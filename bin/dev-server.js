@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 if (process.env.STUB_API) {
-	require(".")
+	require("..")
 } else {
 	console.warn("Set a STUB_API var")
 }
