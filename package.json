@@ -21,6 +21,7 @@
 	},
 	"dependencies": {
 		"chokidar": "^3.5.2",
+		"commander": "^8.0.0",
 		"cosmiconfig": "^7.0.0",
 		"express": "^4.17.1",
 		"glob": "^7.1.7",

@@ -14,7 +14,7 @@ const {
 	registerErrorHandlers,
 } = require("./utils")
 
-process.env.NODE_ENV = "development"
+const PORT = process.env.PORT || 3000
 
 registerErrorHandlers()
 
@@ -72,8 +72,8 @@ app.use("*", (_, res) =>
 	})
 )
 
-app.listen(3000, () => {
-	const startUrl = "http://localhost:3000"
+app.listen(PORT, () => {
+	const startUrl = `http://localhost:${PORT}`
 
 	openBrowser(startUrl)
 
