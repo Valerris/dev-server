@@ -1,0 +1,30 @@
+{
+	"name": "@valerris/dev-server",
+	"version": "0.1.0",
+	"author": "Valerris",
+	"main": "index.js",
+	"license": "MIT",
+	"private": true,
+	"bin": {
+		"vlrrs-dev-server": "bin/dev-server.js"
+	},
+	"scripts": {
+		"start": "cross-env NODE_ENV=development STUB_API=true node bin/dev-server.js",
+		"clean": "rimraf node_modules yarn.lock package-lock.json"
+	},
+	"devDependencies": {
+		"@valerris/webpack-config": "git+https://github.com/Valerris/-valerris-webpack-config.git",
+		"cross-env": "^7.0.3",
+		"rimraf": "^3.0.2",
+		"webpack": "^5.41.1"
+	},
+	"dependencies": {
+		"chokidar": "^3.5.2",
+		"cosmiconfig": "^7.0.0",
+		"express": "^4.17.1",
+		"glob": "^7.1.7",
+		"react-dev-utils": "^11.0.4",
+		"webpack-dev-middleware": "^5.0.0",
+		"webpack-hot-middleware": "^2.25.0"
+	}
+}
