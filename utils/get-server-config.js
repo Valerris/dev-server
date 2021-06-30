@@ -12,7 +12,7 @@ module.exports = function getServerConfig() {
 		const loadPath = `${
 			path.relative(
 				process.cwd(),
-				path.resolve(`${__dirname}`, "../../..")
+				path.resolve(`${__dirname}`, "..")
 			) || process.cwd()
 		}/.serverrc.js`
 
