@@ -41,7 +41,7 @@ app.use(
 app.use(express.json({ extended: true }))
 
 // App api handlers watcher
-const resolvedApiPath = path.resolve(process.cwd(), apiPath)
+const resolvedApiPath = path.resolve(apiPath)
 
 watchApi(resolvedApiPath)
 
@@ -50,8 +50,6 @@ app.use((...args) => {
 })
 
 app.get("/", (_, res, next) => {
-	console.log("index")
-
 	const filename = path.resolve(PATHS.absoluteIndex)
 
 	compiler.outputFileSystem.readFile(filename, (err, result) => {
