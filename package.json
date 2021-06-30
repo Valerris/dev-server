@@ -2,6 +2,7 @@
 	"name": "@valerris/dev-server",
 	"version": "0.1.0",
 	"author": "Valerris",
+	"description": "Valerris dev server",
 	"main": "index.js",
 	"license": "MIT",
 	"private": true,
