@@ -1,3 +1,3 @@
 module.exports = {
-	api: "stub/api",
+	api: "api",
 }

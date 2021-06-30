@@ -5,14 +5,14 @@ const webpackDevMW = require("webpack-dev-middleware")
 const webpackHotMW = require("webpack-hot-middleware")
 const openBrowser = require("react-dev-utils/openBrowser")
 const clearConsole = require("react-dev-utils/clearConsole")
-const config = require("@valerris/webpack.config")
+const config = require("@valerris/webpack-config")
 const { PATHS } = require("@valerris/webpack-config/config/utils")
 const {
 	getServerConfig,
 	watchApi,
 	connectApi,
 	registerErrorHandlers,
-} = require("../utils")
+} = require("./utils")
 
 process.env.NODE_ENV = "development"
 
