@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const program = require("commander")
-const pkg = require("package")
+const pkg = require("../package")
 
 program
 	.version(pkg.version)
@@ -22,9 +22,11 @@ program
 	})
 	.parse(process.argv)
 
+const options = program.opts()
+
 process.env.STUB_API = true
-process.env.NODE_ENV = program.mode
-process.env.PORT = program.port
+process.env.NODE_ENV = options.mode
+process.env.PORT = options.port
 
 if (process.env.STUB_API && process.env.NODE_ENV === "development") {
 	require("..")
