@@ -10,7 +10,7 @@
 		"vlrrs-dev-server": "bin/dev-server.js"
 	},
 	"scripts": {
-		"start": "cross-env NODE_ENV=development STUB_API=true node bin/dev-server.js",
+		"start": "node bin/dev-server.js -m development -p 8080",
 		"clean": "rimraf node_modules yarn.lock package-lock.json"
 	},
 	"devDependencies": {
