@@ -4,20 +4,19 @@
 	"author": "Valerris",
 	"description": "Valerris dev server",
 	"main": "index.js",
-	"license": "MIT",
+	"license": "",
 	"private": true,
 	"bin": {
-		"vlrrs-dev-server": "bin/dev-server.js"
+		"vlrrs-dev-server": "bin/cli.js"
 	},
 	"scripts": {
-		"start": "node bin/dev-server.js -m development -p 8080",
+		"start": "node bin/cli.js -m development -p 8080",
 		"clean": "rimraf node_modules yarn.lock package-lock.json"
 	},
 	"devDependencies": {
-		"@valerris/webpack-config": "git+https://github.com/Valerris/-valerris-webpack-config.git",
+		"@valerris/webpack-config": "git+https://github.com/Valerris/webpack-config.git",
 		"cross-env": "^7.0.3",
-		"rimraf": "^3.0.2",
-		"webpack": "^5.41.1"
+		"rimraf": "^3.0.2"
 	},
 	"dependencies": {
 		"chokidar": "^3.5.2",

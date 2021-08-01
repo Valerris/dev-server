@@ -11,7 +11,7 @@ module.exports = function watchApi(apiPath) {
 		})
 
 		watcher.on("ready", () => {
-			watcher.on("all", () => {
+			watcher.on("change", () => {
 				console.log("> 🔥 Updating due to API changes...")
 
 				invalidateApi(apiPath)
