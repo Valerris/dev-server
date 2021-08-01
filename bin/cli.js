@@ -32,7 +32,11 @@ process.env.NODE_ENV = options.mode
 process.env.PORT = options.port
 
 if (process.env.STUB_API && process.env.NODE_ENV === "development") {
-	require("..")
+	try {
+		require("..")()
+	} catch (err) {
+		throw err
+	}
 } else {
 	throw new Error("Error starting @valerris dev server...")
 }

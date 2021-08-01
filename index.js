@@ -14,70 +14,72 @@ const {
 	registerErrorHandlers,
 } = require("./utils")
 
-const PORT = process.env.PORT || 3000
+module.exports = async function start() {
+	const PORT = process.env.PORT || 3000
 
-registerErrorHandlers()
+	registerErrorHandlers()
 
-const { api: apiPath } = getServerConfig()
+	const { api: apiPath } = getServerConfig()
 
-const app = express()
-const compiler = webpack(config)
+	const app = express()
+	const compiler = webpack(config)
 
-app.use(
-	webpackDevMW(compiler, {
-		publicPath: config.output.publicPath,
-		stats: "minimal",
+	app.use(
+		webpackDevMW(compiler, {
+			publicPath: config.output.publicPath,
+			stats: "minimal",
+		})
+	)
+
+	app.use(
+		webpackHotMW(compiler, {
+			log: console.log,
+			path: "/__webpack_hmr",
+			heartbeat: 10 * 1000,
+		})
+	)
+
+	app.use(express.json({ extended: true }))
+
+	// App api handlers watcher
+	const resolvedApiPath = path.resolve(apiPath)
+
+	watchApi(resolvedApiPath)
+
+	app.use((...args) => {
+		return connectApi(resolvedApiPath).apply(app, args)
 	})
-)
 
-app.use(
-	webpackHotMW(compiler, {
-		log: console.log,
-		path: "/__webpack_hmr",
-		heartbeat: 10 * 1000,
+	app.get("/", (_, res, next) => {
+		const filename = path.resolve(PATHS.absoluteIndex)
+
+		compiler.outputFileSystem.readFile(filename, (err, result) => {
+			if (err) {
+				return next(err)
+			}
+
+			res.set("content-type", "text/html")
+			res.send(result)
+			res.end()
+		})
 	})
-)
 
-app.use(express.json({ extended: true }))
+	app.use("*", (_, res) =>
+		res.status(404).json({
+			success: true,
+			body: {
+				message: "Not found.",
+			},
+		})
+	)
 
-// App api handlers watcher
-const resolvedApiPath = path.resolve(apiPath)
+	app.listen(PORT, () => {
+		const startUrl = `http://localhost:${PORT}`
 
-watchApi(resolvedApiPath)
+		openBrowser(startUrl)
 
-app.use((...args) => {
-	return connectApi(resolvedApiPath).apply(app, args)
-})
+		clearConsole()
 
-app.get("/", (_, res, next) => {
-	const filename = path.resolve(PATHS.absoluteIndex)
-
-	compiler.outputFileSystem.readFile(filename, (err, result) => {
-		if (err) {
-			return next(err)
-		}
-
-		res.set("content-type", "text/html")
-		res.send(result)
-		res.end()
+		console.log(`> 💣 Starting server on ${startUrl} ...`)
 	})
-})
-
-app.use("*", (_, res) =>
-	res.status(404).json({
-		success: true,
-		body: {
-			message: "Not found.",
-		},
-	})
-)
-
-app.listen(PORT, () => {
-	const startUrl = `http://localhost:${PORT}`
-
-	openBrowser(startUrl)
-
-	clearConsole()
-
-	console.log(`> 💣 Starting server on ${startUrl} ...`)
-})
+}
