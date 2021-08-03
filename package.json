@@ -1,7 +1,7 @@
 {
 	"name": "@valerris/dev-server",
 	"version": "0.1.0",
-	"author": "Valerris",
+	"author": "@valerris",
 	"description": "Valerris dev server",
 	"main": "index.js",
 	"license": "",
@@ -15,12 +15,11 @@
 	},
 	"devDependencies": {
 		"@valerris/webpack-config": "git+https://github.com/Valerris/webpack-config.git",
-		"cross-env": "^7.0.3",
 		"rimraf": "^3.0.2"
 	},
 	"dependencies": {
 		"chokidar": "^3.5.2",
-		"commander": "^8.0.0",
+		"commander": "^8.1.0",
 		"cosmiconfig": "^7.0.0",
 		"express": "^4.17.1",
 		"glob": "^7.1.7",

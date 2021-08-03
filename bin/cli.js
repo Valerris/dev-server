@@ -38,5 +38,5 @@ if (process.env.STUB_API && process.env.NODE_ENV === "development") {
 		throw err
 	}
 } else {
-	throw new Error("Error starting @valerris dev server...")
+	throw new Error("Error starting dev server...")
 }
