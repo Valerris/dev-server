@@ -6,13 +6,13 @@ const webpackHotMW = require("webpack-hot-middleware")
 const openBrowser = require("react-dev-utils/openBrowser")
 const clearConsole = require("react-dev-utils/clearConsole")
 const config = require("@valerris/webpack-config")
-const { PATHS } = require("@valerris/webpack-config/config/utils")
+const { PATHS } = require("@valerris/webpack-config/core/utils")
 const {
 	getServerConfig,
 	watchApi,
 	connectApi,
 	registerErrorHandlers,
-} = require("./utils")
+} = require("./core")
 
 module.exports = async function start() {
 	const PORT = process.env.PORT || 3000
